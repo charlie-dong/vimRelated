@@ -1,0 +1,7 @@
+" Use vim-plug to install part of plugins
+
+call plug#begin('~/.vim/plugged')
+Plug 'iamcco/markdown-preview.nvim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+call plug#end()
