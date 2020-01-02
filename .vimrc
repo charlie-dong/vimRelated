@@ -1,5 +1,6 @@
 set spelllang=en
 setlocal spell
+set shell=/bin/bash
 
 colors desert
 

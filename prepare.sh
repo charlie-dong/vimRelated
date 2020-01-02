@@ -5,3 +5,4 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 mkdir ~/.vim/ultisnips-customized
 cp $BASEDIR/*.snippets ~/.vim/ultisnips-customized/
 cp $BASEDIR/.vimrc* ~/
+echo -e "\nsource ~/.bashrc_proxy" >> ~/.bashrc
