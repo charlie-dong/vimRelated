@@ -19,3 +19,5 @@ let g:mkdp_page_title = '${name}'
 let g:UltiSnipsSnippetDirectories=['~/.vim/ultisnips-customized']
 
 autocmd FileType python nnoremap <buffer> <F5> :exec 'python3' shellescape(@%, 1)<cr>
+
+let g:jedi#auto_initialization = 0

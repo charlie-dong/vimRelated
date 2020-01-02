@@ -6,3 +6,4 @@ mkdir ~/.vim/ultisnips-customized
 cp $BASEDIR/*.snippets ~/.vim/ultisnips-customized/
 cp $BASEDIR/.vimrc* ~/
 echo -e "\nsource ~/.bashrc_proxy" >> ~/.bashrc
+sudo apt-get install build-essential cmake python-dev python3-dev

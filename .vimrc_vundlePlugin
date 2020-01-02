@@ -34,6 +34,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ferrine/md-img-paste.vim'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
