@@ -1,6 +1,7 @@
 set spelllang=en
 setlocal spell
 set shell=/bin/bash
+set splitbelow
 
 colors desert
 
@@ -24,7 +25,10 @@ let g:jedi#auto_initialization = 0
 
 "Settings for ycm
 highlight PMenu ctermfg=0 ctermbg=242 guifg=black guibg=darkgrey
-let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_inertion = 1
+let g:ycm_max_num_candidates = 30
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_server_log_level = 'info'
 let g:ycm_min_num_identifier_candidate_chars = 2
