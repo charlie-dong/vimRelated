@@ -26,7 +26,7 @@ let g:jedi#auto_initialization = 0
 
 "Settings for ycm
 highlight PMenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
-highlight PMenuSel ctermfg=11 ctermbg=0 guifg=#ffffff guibg=#000000
+highlight PMenuSel ctermfg=11 ctermbg=0 guifg=#ffff00 guibg=#000000
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_inertion = 1
