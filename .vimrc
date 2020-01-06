@@ -17,8 +17,9 @@ map <F2> :NERDTreeToggle<CR>
 
 let g:mkdp_page_title = '${name}'
 
-let g:UltiSnipsSnippetDirectories=['~/.vim/ultisnips-customized']
+"let g:UltiSnipsSnippetDirectories=['~/.vim/ultisnips-customized']
 let g:UltiSnipsExpandTrigger="<c-j>"
+set runtimepath+=~/.vim/ultisnips-customized
 
 autocmd FileType python nnoremap <buffer> <F5> :exec 'python3' shellescape(@%, 1)<cr>
 
