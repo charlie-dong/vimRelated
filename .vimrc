@@ -17,7 +17,6 @@ map <F2> :NERDTreeToggle<CR>
 
 let g:mkdp_page_title = '${name}'
 
-"let g:UltiSnipsSnippetDirectories=['~/.vim/ultisnips-customized']
 let g:UltiSnipsExpandTrigger="<c-j>"
 set runtimepath+=~/.vim/ultisnips-customized
 
@@ -32,7 +31,7 @@ let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_inertion = 1
 let g:ycm_max_num_candidates = 30
-let g:ycm_show_diagnostics_ui = 0
+let g:ycm_show_diagnostics_ui = 1
 let g:ycm_server_log_level = 'info'
 let g:ycm_min_num_identifier_candidate_chars = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
