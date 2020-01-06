@@ -1,3 +1,4 @@
+syntax on
 set spelllang=en
 setlocal spell
 set shell=/bin/bash
