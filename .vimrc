@@ -1,6 +1,6 @@
 syntax on
 set spelllang=en
-setlocal spell
+"setlocal spell
 set shell=/bin/bash
 set splitbelow
 
