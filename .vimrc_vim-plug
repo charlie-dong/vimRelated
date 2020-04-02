@@ -4,4 +4,5 @@ call plug#begin('~/.vim/plugged')
 Plug 'iamcco/markdown-preview.nvim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'vim-scripts/taglist.vim'
 call plug#end()
