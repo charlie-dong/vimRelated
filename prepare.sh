@@ -6,4 +6,3 @@ git clone https://github.com/charlie-dong/ultisnips-customized.git ~/.vim/ultisn
 cp $BASEDIR/.vimrc* ~/
 cp $BASEDIR/.bashrc_proxy ~/
 echo -e "\nsource ~/.bashrc_proxy" >> ~/.bashrc
-sudo apt-get install build-essential cmake python-dev python3-dev
