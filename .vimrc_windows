@@ -1,0 +1,166 @@
+set spelllang=en
+setlocal spell
+set incsearch
+set encoding=utf-8
+syntax on
+set splitbelow
+set lines=40 columns=150
+set guioptions-=m "remove menubar
+set guioptions-=T "remove toolbar
+set guioptions-=r "remove scrollbar
+
+source $VIMRUNTIME/vimrc_example.vim
+
+set diffexpr=MyDiff()
+function MyDiff()
+  let opt = '-a --binary '
+  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  let arg1 = v:fname_in
+  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+  let arg1 = substitute(arg1, '!', '\!', 'g')
+  let arg2 = v:fname_new
+  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+  let arg2 = substitute(arg2, '!', '\!', 'g')
+  let arg3 = v:fname_out
+  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+  let arg3 = substitute(arg3, '!', '\!', 'g')
+  if $VIMRUNTIME =~ ' '
+    if &sh =~ '\<cmd'
+      if empty(&shellxquote)
+        let l:shxq_sav = ''
+        set shellxquote&
+      endif
+      let cmd = '"' . $VIMRUNTIME . '\diff"'
+    else
+      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+    endif
+  else
+    let cmd = $VIMRUNTIME . '\diff'
+  endif
+  let cmd = substitute(cmd, '!', '\!', 'g')
+  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
+  if exists('l:shxq_sav')
+    let &shellxquote=l:shxq_sav
+  endif
+endfunction
+
+colors desert
+set clipboard=unnamed
+set softtabstop=4
+
+if isdirectory($HOME . '/.vimundo') == 0
+  :silent !md \%UserProfile\%\\.vimundo
+endif
+set undodir=$HOME/.vimundo//
+
+if isdirectory($HOME . '/.vimbackup') == 0
+  :silent !md \%UserProfile\%\\.vimbackup
+endif
+set backupdir=$HOME/.vimbackup//
+
+
+if isdirectory($HOME . '/.vimswap') == 0
+  :silent !md \%UserProfile\%\\.vimswap
+endif
+set directory=$HOME/.vimswap//
+
+set shortmess+=A
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ferrine/md-img-paste.vim'
+Plugin 'iamcco/markdown-preview.nvim' 
+Plugin 'davidhalter/jedi-vim'
+Plugin 'Valloric/YouCompleteMe'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" Use vim-plug to install part of plugins 
+call plug#begin('~/.vim/plugged')
+"Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'aklt/plantuml-syntax'
+Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'tyru/open-browser.vim'
+call plug#end()
+
+let g:airline#extensions#tabline#enabled = 1
+" nerdTree¿ì½Ý¼üÓ³Éä
+let NERDTreeWinPos='left'
+let NERDTreeWinSize=30
+let NERDTreeShowHidden=0
+map <F2> :NERDTreeToggle<CR>
+
+if has('python3')
+    silent! python3 1
+endif
+
+let g:mkdp_page_title = '${name}'
+
+""""Start markdown-preview settings""""""
+source $HOME/.vimrc_md-preview
+
+"""""""Setting for paste image in markdown file
+autocmd FileType markdown nmap <silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+" there are some defaults for image directory and image name, you can change them
+let g:mdip_imgdir = 'D:\images\'
+" let g:mdip_imgname = 'image'
+
+"""""""Setting for snippet
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+set runtimepath+=~/.vim/ultisnips-customized
+
+autocmd FileType python nnoremap <buffer> <F5> :exec '!py -3' shellescape(@%, 1)<cr>
+
+let g:jedi#auto_initialization = 0
+
+"Settings for ycm
+highlight PMenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
+highlight PMenuSel ctermfg=11 ctermbg=0 guifg=#ffff00 guibg=#000000
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_inertion = 1
+let g:ycm_max_num_candidates = 40
+let g:ycm_show_diagnostics_ui = 1
+let g:ycm_server_log_level = 'info'
+let g:ycm_log_level='debug'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+set completeopt=menu,menuone
+let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
+
+noremap <c-z> <NOP>
+
+let g:ycm_semantic_triggers =  {
+                        \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+                        \ 'cs,lua,javascript': ['re!\w{2}'],
+                        \ }
+
+nnoremap <leader>gd    :YcmCompleter GoTo<CR>
+nnoremap <leader>gr    :YcmCompleter GoToReferences<CR>
+nnoremap <leader>gi    :YcmCompleter GetDoc<CR>
+nnoremap <leader>gt    :YcmCompleter GetType<CR>
+"end setting for ycm*************
+
+let g:plantuml_previewer#plantuml_jar_path = 'C:\Users\charlied\plantuml.jar'
